@@ -6,8 +6,7 @@ import {
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  View,
-  SafeAreaView
+  View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -16,6 +15,7 @@ import DraggableView from '../../../../components/DraggableView';
 import Modal from '../../../../components/Modal';
 import theme from '../../../../theme';
 import { attemptToOpenUrl } from '../../../../utils';
+import { Platform } from 'expo-core';
 
 function Button({ bordered, icon, onPress, text }) {
   const touchableProps = {
@@ -30,9 +30,14 @@ function Button({ bordered, icon, onPress, text }) {
     borderLeftWidth: bordered ? 1 / PixelRatio.get() : null
   };
 
+  const mergedStyles = [styles.button];
+  if (Platform.OS === 'ios') {
+    mergedStyles.push(dynamicStyles);
+  }
+
   return (
     <TouchableHighlight {...touchableProps}>
-      <View style={[styles.button, dynamicStyles]}>
+      <View style={mergedStyles}>
         <Icon name={icon} size={24} style={styles.buttonIcon} />
         <Text style={styles.buttonText}>{text}</Text>
       </View>
