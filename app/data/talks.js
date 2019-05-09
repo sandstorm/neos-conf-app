@@ -5,7 +5,7 @@ import { ScheduleTalk } from '../types';
 import talksJsonPerDay from './talks.json';
 
 const BEGIN_DAY_OF_CONFERENCE = moment.tz(
-  '2018-04-13 09:00:00',
+  '2019-05-10 09:00:00',
   'Europe/Berlin'
 );
 
